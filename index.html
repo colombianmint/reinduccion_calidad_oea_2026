@@ -1770,6 +1770,27 @@
                 },
                 "retina_detect": true
             });
+
+        // Navegación con clics del mouse
+        window.addEventListener("mousedown", function(e) {
+            // Ignorar clics en enlaces, botones o controles propios de Reveal.js
+            if (e.target.closest('a, button, video, audio, input, select, textarea, .controls, .navigate-left, .navigate-right, .navigate-up, .navigate-down')) {
+                return;
+            }
+            
+            if (e.button === 0) {
+                // Clic izquierdo: avanzar
+                Reveal.next();
+            } else if (e.button === 2) {
+                // Clic derecho: retroceder
+                Reveal.prev();
+            }
+        });
+
+        // Prevenir el menú contextual del clic derecho en toda la ventana
+        window.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 
